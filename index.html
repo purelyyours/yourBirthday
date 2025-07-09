@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #ffb8c6;
+            --accent: #ff4757;
+            --light: #fff5f7;
+            --dark: #3d3d3d;
+            --pastel-pink: #ffd6e0;
+            --pastel-purple: #e2d1f9;
+            --pastel-blue: #d1e9ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-purple));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" d="M30,30 Q50,10 70,30 T90,50 T70,70 T50,90 T30,70 T10,50 T30,30 Z"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .typed-text {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            min-height: 4rem;
+        }
+
+        .date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .music-toggle {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-toggle:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        /* Petals Animation */
+        .petal {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: 1;
+            animation: falling linear infinite;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translate(0, -10%) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(var(--random-x), 100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--accent);
+        }
+
+        /* Our Story Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-text {
+            margin-bottom: 10px;
+        }
+
+        .timeline-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-image:hover {
+            transform: scale(1.03);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(255, 107, 139, 0.3);
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* 10 Things I Love About You */
+        .love-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .love-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .love-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .love-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .love-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Love Letter */
+        .letter-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 10px 10px 0 0;
+        }
+
+        .letter-content {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-top: 30px;
+            text-align: right;
+        }
+
+        /* Birthday Surprise */
+        .surprise {
+            text-align: center;
+            background: linear-gradient(135deg, var(--pastel-purple), var(--pastel-blue));
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise-message {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .heart-animation {
+            width: 100px;
+            height: 100px;
+            background-color: var(--primary);
+            position: relative;
+            transform: rotate(45deg);
+            margin: 50px auto;
+            animation: heartbeat 1.5s infinite;
+            box-shadow: 0 0 40px var(--primary);
+        }
+
+        .heart-animation:before,
+        .heart-animation:after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-animation:before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart-animation:after {
+            top: 0;
+            left: -50px;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: rotate(45deg) scale(1); }
+            25% { transform: rotate(45deg) scale(1.1); }
+            50% { transform: rotate(45deg) scale(1); }
+            75% { transform: rotate(45deg) scale(1.1); }
+            100% { transform: rotate(45deg) scale(1); }
+        }
+
+        .replay-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .replay-btn:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.6);
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            transform: rotate(45deg);
+            opacity: 0;
+            animation: float-up 6s linear infinite;
+        }
+
+        .floating-heart:before,
+        .floating-heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .floating-heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .floating-heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: rotate(45deg) translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(45deg) translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .typed-text {
+                font-size: 1.2rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 21px !important;
+            }
+
+            .letter-content {
+                font-size: 1.2rem;
+            }
+
+            .surprise-message {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown animate__delay-0.5s">Happy Birthday Maaa🥹</h1>
+            <div class="date animate__animated animate__fadeIn animate__delay-1s">🎂 July 10th</div>
+            <div class="birthday-quote animate__animated animate__fadeInUp animate__delay-2s">
+                "You are the reason why I Smile and will always be..<br>
+                May your day be filled with endless love and magic. 💖"
+            </div>
+        </div>
+        <div id="petals"></div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="our-story" id="story" data-aos="fade-up">
+        <h2 class="section-title">Our Beautiful Story</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <div class="timeline-date">When We First Met</div>
+                    <div class="timeline-text">
+                        Mek gurtuku led kanie mimalni chusina roju nak gurtuku undi, school lo mer bench meda kurchunnar,Nen ekado duram nunchi chsuina, epudu ante hair leave chaskuntallu kanie apudu pilkalu
+                    </div>
+                    <div class="timeline-image-text">🫀 Our First Meeting</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <div class="timeline-date">Our Sweet Memory</div>
+                    <div class="timeline-text">
+                        That magical cybersecurity WorkShop.... mer nannu patinchukole anukondi,adi vere, kanie nen aite mimalni dagara nunchi chsuina ah 3 days, epatiki na life lo beautiful days ante avi ah 3 days ehh...
+                    </div>
+                    <div class="timeline-image-text">🍽️ Our Sweet memory</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <div class="timeline-date">The Day I Knew</div>
+                    <div class="timeline-text">
+                        When you laughed at my silly joke and I realized I was completely yours.
+                    </div>
+                    <div class="timeline-image-text">💡 Realized My Love</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <div class="timeline-date">Today</div>
+                    <div class="timeline-text">
+                        Every day with you is a gift I cherish more than words can say.
+                    </div>
+                    <div class="timeline-image-text">🎁 Today & Forever</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 Things I Love About You -->
+    <section class="love-things" id="love" data-aos="fade-up">
+        <h2 class="section-title">10 Things I Love About You</h2>
+        <div class="love-grid">
+            <div class="love-card" data-aos="flip-left">
+                <div>
+                    <h3>Your Smile</h3>
+                    <p>The way your eyes light up the room brighter than the sun</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="100">
+                <div>
+                    <h3>Your Laugh</h3>
+                    <p>My favorite sound in the whole world</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="200">
+                <div>
+                    <h3>Your Kindness</h3>
+                    <p>How you care for others with such genuine warmth</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="300">
+                <div>
+                    <h3>Your Strength</h3>
+                    <p>The quiet courage you show every day</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="400">
+                <div>
+                    <h3>Your Mind</h3>
+                    <p>The way you see the world in such beautiful ways</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="500">
+                <div>
+                    <h3>Your Touch</h3>
+                    <p>How just holding your hand makes everything right</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="600">
+                <div>
+                    <h3>Your Voice</h3>
+                    <p>Especially when you say my name</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="700">
+                <div>
+                    <h3>Your Passion</h3>
+                    <p>How you light up when you talk about what you love</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="800">
+                <div>
+                    <h3>Your Patience</h3>
+                    <p>With me, with life, with all its challenges</p>
+                </div>
+            </div>
+            <div class="love-card" data-aos="flip-left" data-aos-delay="900">
+                <div>
+                    <h3>Simply You</h3>
+                    <p>Every single thing that makes you who you are</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Letter -->
+    <section class="love-letter" id="letter" data-aos="fade-up">
+        <h2 class="section-title">A Letter To You</h2>
+        <div class="letter-container">
+            <div class="letter-content">
+                <p>My Dearest Pujitha Garuu,</p>
+                <p>As I sit here thinking of you on your special day, my heart overflows with more love than I ever thought possible. From the moment we met, you've brought light into my life in ways I never imagined.</p>
+                <p>I remember our first conversation, how your laughter made my stomach flutter. I remember our first date, when hours felt like minutes. I remember the first time you held my hand and how perfectly it fit in mine.</p>
+                <p>But more than all these memories, I cherish who you are - your kindness that touches everyone around you, your strength that inspires me daily, your beautiful soul that makes this world a better place.</p>
+                <p>Today, on your birthday, I want you to know that you are my greatest adventure, my most beautiful dream come true. Every day with you is a gift I thank the universe for.</p>
+                <p>I promise to keep making you laugh, to hold you when you cry, to stand by you through all of life's journeys. I promise to love you more each day than I did the day before.</p>
+                <p>Happy birthday to the woman who owns my heart completely.</p>
+                <div class="signature">Forever Yours</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Birthday Surprise -->
+    <section class="surprise" id="surprise">
+        <div class="surprise-message" data-aos="zoom-in">
+            "You are my once in a lifetime. I love you more than words, more than life."
+        </div>
+        <div class="heart-animation" data-aos="zoom-in" data-aos-delay="300"></div>
+        <button class="replay-btn" id="replayBtn">Replay the Magic</button>
+        <div class="floating-hearts" id="floatingHearts"></div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        // Initialize AOS for scroll animations
+        AOS.init({
+            duration: 1000,
+            once: false
+        });
+
+        // Function to create falling petals
+        function createPetals() {
+            const petalsContainer = document.getElementById('petals');
+            petalsContainer.innerHTML = ''; // Clear existing petals
+            const petalCount = 15;
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                
+                // Random petal style
+                const petalTypes = ['🌸', '🌹', '🌺', '🌻', '🌼'];
+                const randomPetal = petalTypes[Math.floor(Math.random() * petalTypes.length)];
+                
+                petal.innerHTML = randomPetal;
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                petal.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                petal.style.animationDelay = (Math.random() * 5) + 's';
+                petal.style.setProperty('--random-x', (Math.random() * 100 - 50) + 'px');
+                
+                petalsContainer.appendChild(petal);
+            }
+        }
+
+        // Function to create floating hearts
+        function createFloatingHearts() {
+            const floatingHearts = document.getElementById('floatingHearts');
+            floatingHearts.innerHTML = ''; // Clear existing hearts
+            const heartCount = 20;
+
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                floatingHearts.appendChild(heart);
+            }
+        }
+
+        // Function to reset animations
+        function resetAnimations() {
+            // Remove all animation classes
+            const animatedElements = document.querySelectorAll('.animate__animated, [data-aos]');
+            animatedElements.forEach(el => {
+                el.classList.remove('animate__animated', 'animate__fadeInDown', 'animate__fadeIn', 'animate__fadeInUp', 'aos-animate');
+                el.removeAttribute('data-aos-animate');
+            });
+
+            // Force reflow to reset animations
+            void document.body.offsetHeight;
+
+            // Re-add animation classes
+            document.querySelector('.hero h1').classList.add('animate__animated', 'animate__fadeInDown', 'animate__delay-0.5s');
+            document.querySelector('.hero .date').classList.add('animate__animated', 'animate__fadeIn', 'animate__delay-1s');
+            document.querySelector('.hero .birthday-quote').classList.add('animate__animated', 'animate__fadeInUp', 'animate__delay-2s');
+
+            // Reinitialize AOS
+            AOS.init({
+                duration: 1000,
+                once: false
+            });
+
+            // Recreate petals and hearts
+            createPetals();
+            createFloatingHearts();
+        }
+
+        // Replay button functionality
+        document.getElementById('replayBtn').addEventListener('click', function() {
+            // Scroll to top first
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // After scroll completes, reset animations
+            setTimeout(resetAnimations, 1000);
+        });
+
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create initial petals and hearts
+            createPetals();
+            createFloatingHearts();
+
+            // Cursor heart trail
+            document.addEventListener('mousemove', function(e) {
+                if (Math.random() > 0.7) { // Only create hearts sometimes
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-heart';
+                    heart.style.left = e.pageX - 10 + 'px';
+                    heart.style.top = e.pageY - 10 + 'px';
+                    heart.style.animationDuration = '2s';
+                    heart.style.width = '10px';
+                    heart.style.height = '10px';
+                    document.body.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
